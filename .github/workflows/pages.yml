@@ -13,22 +13,16 @@ jobs:
   deploy:
     runs-on: ubuntu-22.04
     steps:
-    - name: Checkout repo
+    - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Setup Pages
       uses: actions/configure-pages@v3
 
-    - name: Workaround: Dummy upload to fix missing action
-      uses: actions/upload-artifact@v3
-      with:
-        name: dummy
-        path: README.md
-
-    - name: Upload Pages Artifact
+    - name: Upload static site
       uses: actions/upload-pages-artifact@v1
       with:
-        path: '.'
+        path: '.'  # Make sure this is where index.html lives
 
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v2
