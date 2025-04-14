@@ -12,17 +12,24 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-22.04
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup Pages
+    - name: Setup GitHub Pages
       uses: actions/configure-pages@v3
 
-    - name: Upload static site
+    - name: FORCE RESOLVE: upload-artifact@v3
+      uses: actions/upload-artifact@v3
+      with:
+        name: dummy
+        path: README.md
+
+    - name: Upload GitHub Pages artifact
       uses: actions/upload-pages-artifact@v1
       with:
-        path: '.'  # Make sure this is where index.html lives
+        path: '.'
 
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v2
